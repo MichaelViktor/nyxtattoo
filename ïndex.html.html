@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="cs" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NYX TATTOO | Boskovice</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Pirata+One&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #050507;
+      --bg-surface: #0c0c10;
+      --accent-copper: #c86d2d;
+    }
+    body {
+      font-family: 'Rajdhani', sans-serif;
+      background-color: var(--bg-dark);
+      color: #e4e4e7;
+      overflow-x: hidden;
+    }
+    .font-metal { font-family: 'Metal Mania', cursive; }
+    .font-gothic { font-family: 'Pirata One', cursive; }
+
+    .hero-overlay {
+      background: radial-gradient(circle at center, rgba(5,5,7,0.2) 0%, rgba(5,5,7,0.88) 85%, #050507 100%);
+    }
+    .section-overlay-dark {
+      background: linear-gradient(180deg, rgba(5,5,7,0.92) 0%, rgba(5,5,7,0.72) 50%, rgba(5,5,7,0.96) 100%);
+    }
+    .gallery-card img {
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .gallery-card:hover img {
+      transform: scale(1.04);
+    }
+    #lightbox {
+      backdrop-filter: blur(12px);
+    }
+  </style>
+  <script>
+    // Automatické vyzkoušení přípon, kdyby některý soubor v PC měl jinou koncovku (.jpg, .png, .jpeg)
+    function loadSmartImage(img, baseName) {
+      const exts = ['.jpg', '.png', '.jpeg', '.webp', '.JPG', '.PNG'];
+      let idx = 0;
+      img.onerror = function () {
+        idx++;
+        if (idx < exts.length) {
+          img.src = baseName + exts[idx];
+        } else {
+          img.onerror = null;
+        }
+      };
+      img.src = baseName + exts[0];
+    }
+  </script>
+</head>
+<body class="antialiased selection:bg-red-900 selection:text-white">
+
+  <!-- NAVIGACE -->
+  <header class="fixed top-0 left-0 right-0 z-40 border-b border-white/10 bg-black/75 backdrop-blur-md">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#top" class="font-metal tracking-[0.18em] text-xl md:text-2xl text-white">
+        NYX <span class="text-[#c86d2d]">TATTOO</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-xs uppercase tracking-[0.22em] font-semibold text-zinc-300">
+        <a href="#uvod" class="hover:text-white transition-colors">Studio</a>
+        <a href="#galerie" class="hover:text-white transition-colors">Galerie</a>
+        <a href="#o-mne" class="hover:text-white transition-colors">Nyx Whisp</a>
+        <a href="#kontakt" class="hover:text-white transition-colors">Kontakt</a>
+      </nav>
+
+      <div class="flex items-center gap-4">
+        <a href="https://www.instagram.com/nyx_whisp/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-zinc-300 hover:text-white transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/search/top?q=Nyx%20Whisp" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-zinc-300 hover:text-white transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
+        </a>
+        <a href="tel:733779670" class="hidden sm:inline-block border border-[#c86d2d] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-white hover:bg-[#c86d2d] hover:text-black transition-all">
+          733 779 670
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. HERO SEKCE S TVÝM LOGEM BEZ BÍLÉHO ČTVERCE -->
+  <section id="top" class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-16 overflow-hidden">
+    <img src="resource-database-tocdf43Q6d8-unsplash.jpg" alt="Pozadí NYX Tattoo" class="absolute inset-0 w-full h-full object-cover object-center scale-105 opacity-80" />
+    <div class="hero-overlay absolute inset-0"></div>
+
+    <div class="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
+      <!-- Vyříznuté nové logo bez bílého čtverce -->
+      <div class="w-64 sm:w-80 md:w-96 mb-8 drop-shadow-[0_12px_32px_rgba(0,0,0,0.95)] flex items-center justify-center">
+        <canvas id="cutout-logo-canvas" class="max-w-full h-auto"></canvas>
+      </div>
+
+      <p class="text-xs sm:text-sm font-semibold uppercase tracking-[0.35em] text-zinc-300 mb-10">
+        Boskovice &bull; Tetovací studio
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="#galerie" class="bg-white text-black px-8 py-3.5 text-xs font-bold uppercase tracking-[0.22em] hover:bg-[#c86d2d] hover:text-white transition-colors">
+          Galerie tetování
+        </a>
+        <a href="#kontakt" class="border border-white/40 bg-black/50 backdrop-blur-sm text-white px-8 py-3.5 text-xs font-bold uppercase tracking-[0.22em] hover:bg-white hover:text-black transition-all">
+          Objednat termín
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. ÚVODNÍ SEKCE -->
+  <section id="uvod" class="bg-[#0b0b0f] text-zinc-100 py-24 md:py-28 px-6 border-t border-white/10">
+    <div class="max-w-3xl mx-auto text-center">
+      <span class="block text-xs font-semibold uppercase tracking-[0.35em] text-[#c86d2d] mb-3">
+        Boskovice
+      </span>
+      <h1 class="font-metal text-4xl sm:text-5xl md:text-6xl tracking-[0.1em] text-white uppercase mb-6 leading-tight">
+        NYX TATTOO
+      </h1>
+      <p class="text-base sm:text-lg text-zinc-300 leading-relaxed max-w-2xl mx-auto">
+        Autorská tetování na míru i volné motivy v soukromém studiu v Boskovicích. Zaměřuji se na detailní práci s linkou, stínování, blackwork a temnější ilustrativní motivy.
+      </p>
+    </div>
+
+    <!-- 3 ukázky přímo pod úvodem (pouze reálné práce) -->
+    <div class="max-w-6xl mx-auto mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="overflow-hidden bg-zinc-900 border border-white/10 aspect-[4/5] cursor-pointer" onclick="openLightbox('Screenshot_20261124_155516_Instagram.jpg')">
+        <img src="Screenshot_20261124_155516_Instagram.jpg" alt="Tetování" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700" />
+      </div>
+
+      <div class="overflow-hidden bg-zinc-900 border border-white/10 aspect-[4/5] cursor-pointer" onclick="openLightbox('Screenshot_20261124_155437_Instagram.jpg')">
+        <img src="Screenshot_20261124_155437_Instagram.jpg" alt="Tetování" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700" />
+      </div>
+
+      <div class="overflow-hidden bg-zinc-900 border border-white/10 aspect-[4/5] cursor-pointer" onclick="openLightbox('eb7209a7-80bb-45d6-8714-04180ace79d4.jpg')">
+        <img src="eb7209a7-80bb-45d6-8714-04180ace79d4.jpg" alt="Tetování" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. JAK TO U MĚ PROBÍHÁ -->
+  <section class="relative py-24 md:py-32 px-6 text-white overflow-hidden border-t border-white/10">
+    <img src="vaaris-chitkara-PQhSOincrqM-unsplash.jpg" alt="Pozadí" class="absolute inset-0 w-full h-full object-cover object-center opacity-55" />
+    <div class="section-overlay-dark absolute inset-0"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto">
+      <div class="text-center mb-14">
+        <h2 class="font-metal text-4xl sm:text-5xl uppercase tracking-[0.1em]">
+          Jak to u mě probíhá
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div class="p-8 border border-white/15 bg-black/60 backdrop-blur-md">
+          <span class="block text-xs font-bold tracking-[0.25em] text-[#c86d2d] uppercase mb-2">01 / Konzultace</span>
+          <h3 class="font-gothic text-2xl sm:text-3xl tracking-wider text-white mb-3">Návrh na míru</h3>
+          <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+            Probereme tvou představu, velikost a umístění na těle a připravím originální návrh přímo pro tebe.
+          </p>
+        </div>
+
+        <div class="p-8 border border-white/15 bg-black/60 backdrop-blur-md">
+          <span class="block text-xs font-bold tracking-[0.25em] text-[#c86d2d] uppercase mb-2">02 / Realizace</span>
+          <h3 class="font-gothic text-2xl sm:text-3xl tracking-wider text-white mb-3">Precizní provedení</h3>
+          <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+            Tetování probíhá v čistém a klidném prostředí s důrazem na detail a sterilní vybavení.
+          </p>
+        </div>
+
+        <div class="p-8 border border-white/15 bg-black/60 backdrop-blur-md">
+          <span class="block text-xs font-bold tracking-[0.25em] text-[#c86d2d] uppercase mb-2">03 / Péče</span>
+          <h3 class="font-gothic text-2xl sm:text-3xl tracking-wider text-white mb-3">Hojení</h3>
+          <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+            Po dokončení dostaneš jasné instrukce k následné péči, aby tetování perfektně drželo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. GALERIE HOTOVÝCH TETOVÁNÍ -->
+  <section id="galerie" class="bg-[#050507] py-24 md:py-32 px-6 border-t border-white/10">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="block text-xs font-semibold uppercase tracking-[0.35em] text-[#c86d2d] mb-2">
+            Ukázky prací
+          </span>
+          <h2 class="font-metal text-4xl sm:text-5xl uppercase tracking-[0.1em] text-white">
+            Galerie tetování
+          </h2>
+        </div>
+
+        <a href="https://www.instagram.com/nyx_whisp/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold uppercase tracking-[0.2em] text-zinc-300 hover:text-[#c86d2d] transition-colors">
+          Další práce na IG @nyx_whisp &rarr;
+        </a>
+      </div>
+
+      <!-- Čistá mřížka fotek -->
+      <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- 5. NOVÁ SEKCE S FOTKOU SLEČNY V TRIČKU O OSOBNÍM PŘÍSTUPU V BOSKOVICÍCH -->
+  <section class="relative py-32 md:py-44 px-6 text-white overflow-hidden border-t border-white/10">
+    <img src="othniel-dickson-lTw3Wif2eiw-unsplash.jpg" alt="Tetování Boskovice" class="absolute inset-0 w-full h-full object-cover object-center opacity-75" />
+    <div class="absolute inset-0 bg-gradient-to-b from-[#050507]/80 via-[#050507]/45 to-[#0c0c10]/90"></div>
+
+    <div class="relative z-10 max-w-3xl mx-auto text-center">
+      <span class="block text-xs font-semibold uppercase tracking-[0.35em] text-[#c86d2d] mb-3 drop-shadow">
+        Osobní přístup &bull; Boskovice
+      </span>
+      <h2 class="font-metal text-3xl sm:text-5xl uppercase tracking-[0.08em] text-white mb-6 drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
+        Tetování s individuální péčí
+      </h2>
+      <p class="text-base sm:text-lg text-white leading-relaxed mb-8 drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+        V mém studiu v Boskovicích zakládám především na osobním přístupu, klidné atmosféře a vzájemné důvěře. Každé tetování je originál – ať už máš jasnou představu, nebo jen hrubý nápad, neváhej se ozvat a společně doladíme motiv přesně podle tebe.
+      </p>
+      <a href="#kontakt" class="inline-block border border-[#c86d2d] bg-black/75 px-8 py-3.5 text-xs font-bold uppercase tracking-[0.22em] text-white hover:bg-[#c86d2d] hover:text-black transition-all">
+        Domluvit konzultaci
+      </a>
+    </div>
+  </section>
+
+  <!-- 6. O MNĚ & PROKLIKY NA IG A FB (S PŮVODNÍ FOTKOU STUDIA) -->
+  <section id="o-mne" class="bg-[#0c0c10] text-zinc-100 py-24 md:py-32 px-6 border-t border-white/10">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+      <div class="md:col-span-5">
+        <div class="relative overflow-hidden border border-white/15 shadow-2xl aspect-[4/5] bg-zinc-950">
+          <img src="FB_IMG_1795533642054.jpg" alt="Studio NYX Tattoo Boskovice" class="w-full h-full object-cover object-top" />
+        </div>
+      </div>
+
+      <div class="md:col-span-7">
+        <span class="block text-xs font-semibold uppercase tracking-[0.35em] text-[#c86d2d] mb-3">
+          Studio Boskovice
+        </span>
+        <h2 class="font-metal text-4xl sm:text-5xl uppercase tracking-[0.08em] text-white mb-6">
+          Nyx Whisp
+        </h2>
+        <p class="text-base sm:text-lg text-zinc-300 leading-relaxed mb-5">
+          Vystudovala jsem Střední školu designu a umění, knižní kultury a ekonomiky Náhorní. Pod značkou <strong class="text-white">NYX TATTOO</strong> v Boskovicích tvořím autorská tetování od prvního návrhu až po finální realizaci.
+        </p>
+        <p class="text-base sm:text-lg text-zinc-300 leading-relaxed mb-8">
+          Aktuální volné motivy a nejnovější práce najdeš na mém Instagramu a Facebooku, kde se můžeme rovnou domluvit na termínu.
+        </p>
+
+        <!-- Prokliky na IG a FB -->
+        <div class="flex flex-wrap items-center gap-4 pt-4 border-t border-white/10">
+          <a href="https://www.instagram.com/nyx_whisp/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 bg-white text-black px-6 py-3.5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#c86d2d] hover:text-white transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <span>Instagram (@nyx_whisp)</span>
+          </a>
+
+          <a href="https://www.facebook.com/search/top?q=Nyx%20Whisp" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 border border-white/30 text-white px-6 py-3.5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
+            <span>Facebook (Nyx Whisp)</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. REZERVACE & KONTAKT (SIMONA PAVELKOVÁ, IČO 07552432, TLAČÍTKO NA ZAVOLÁNÍ) -->
+  <section id="kontakt" class="relative py-28 md:py-36 px-6 text-white overflow-hidden border-t border-white/10">
+    <img src="wolfgang-hasselmann-I_j2P1IiS9U-unsplash.jpg" alt="Pozadí" class="absolute inset-0 w-full h-full object-cover object-center opacity-50" />
+    <div class="section-overlay-dark absolute inset-0"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto">
+      <div class="text-center mb-14">
+        <span class="block text-xs font-semibold uppercase tracking-[0.35em] text-[#c86d2d] mb-3">
+          Konzultace &amp; Termíny
+        </span>
+        <h2 class="font-metal text-4xl sm:text-5xl uppercase tracking-[0.1em] mb-4">
+          Objednej se na tetování
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-8 bg-black/75 backdrop-blur-lg border border-white/15 p-8 md:p-10">
+        <div class="md:col-span-2 flex flex-col justify-between border-b md:border-b-0 md:border-r border-white/10 pb-8 md:pb-0 md:pr-8">
+          <div>
+            <h3 class="font-gothic text-2xl tracking-wider mb-6 text-white">Kontakt &amp; Údaje</h3>
+            <ul class="space-y-4 text-sm text-zinc-300">
+              <li>
+                <span class="block text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-500 mb-1">Studio</span>
+                NYX TATTOO &bull; Boskovice
+              </li>
+              <li>
+                <span class="block text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-500 mb-1">Tatérka</span>
+                Simona Pavelková
+              </li>
+              <li>
+                <span class="block text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-500 mb-1">IČO</span>
+                07552432
+              </li>
+              <li>
+                <span class="block text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-500 mb-1">Telefon</span>
+                <a href="tel:733779670" class="text-white font-semibold hover:text-[#c86d2d] transition-colors">
+                  +420 733 779 670
+                </a>
+              </li>
+              <li>
+                <span class="block text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-500 mb-1">Otevírací doba</span>
+                Dle předchozí objednávky
+              </li>
+            </ul>
+
+            <!-- Přímé tlačítko na zavolání -->
+            <a href="tel:733779670" class="mt-6 w-full inline-flex items-center justify-center gap-2.5 bg-[#c86d2d] text-white py-3.5 px-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#a85820] transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              <span>Zavolat: 733 779 670</span>
+            </a>
+          </div>
+
+          <div class="mt-6 pt-6 border-t border-white/10 flex gap-3">
+            <a href="https://www.instagram.com/nyx_whisp/" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2.5 border border-white/25 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all">
+              Instagram
+            </a>
+            <a href="https://www.facebook.com/search/top?q=Nyx%20Whisp" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2.5 border border-white/25 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all">
+              Facebook
+            </a>
+          </div>
+        </div>
+
+        <form id="booking-form" class="md:col-span-3 space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400 mb-1.5">Jméno</label>
+              <input type="text" required placeholder="Tvé jméno" class="w-full bg-white/5 border border-white/15 px-4 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#c86d2d]" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400 mb-1.5">Kontakt (IG / E-mail / Tel.)</label>
+              <input type="text" required placeholder="@tvuj_ig nebo telefon" class="w-full bg-white/5 border border-white/15 px-4 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#c86d2d]" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400 mb-1.5">Umístění na těle</label>
+              <input type="text" placeholder="Např. předloktí, záda..." class="w-full bg-white/5 border border-white/15 px-4 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#c86d2d]" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400 mb-1.5">Přibližná velikost (cm)</label>
+              <input type="text" placeholder="Např. 15 × 10 cm" class="w-full bg-white/5 border border-white/15 px-4 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#c86d2d]" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400 mb-1.5">Představa o motivu</label>
+            <textarea rows="3" required placeholder="Popiš krátce svůj nápad..." class="w-full bg-white/5 border border-white/15 px-4 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#c86d2d]"></textarea>
+          </div>
+
+          <button type="submit" class="w-full bg-white text-black py-3.5 text-xs font-bold uppercase tracking-[0.25em] hover:bg-[#c86d2d] hover:text-white transition-colors">
+            Odeslat poptávku
+          </button>
+
+          <p id="form-feedback" class="hidden text-xs text-emerald-400 text-center pt-2">
+            Odesláno. Pro nejrychlejší domluvu zavolej na <a href="tel:733779670" class="underline">733 779 670</a> nebo napiš na IG <a href="https://www.instagram.com/nyx_whisp/" target="_blank" class="underline">@nyx_whisp</a>.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- PATIČKA -->
+  <footer class="bg-[#030304] border-t border-white/10 py-10 px-6 text-center text-zinc-500">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="font-metal tracking-[0.2em] text-base text-zinc-300">
+        NYX <span class="text-[#c86d2d]">TATTOO</span> &bull; BOSKOVICE
+      </div>
+
+      <div class="flex items-center gap-6 text-xs font-semibold uppercase tracking-[0.2em]">
+        <a href="tel:733779670" class="hover:text-white transition-colors">733 779 670</a>
+        <a href="https://www.instagram.com/nyx_whisp/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Instagram</a>
+        <a href="https://www.facebook.com/search/top?q=Nyx%20Whisp" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Facebook</a>
+        <a href="#top" class="hover:text-white transition-colors">Nahoru &uarr;</a>
+      </div>
+
+      <div class="text-xs">
+        &copy; 2026 NYX TATTOO &bull; Simona Pavelková &bull; IČO: 07552432
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX PRO ZVĚTŠENÍ FOTKY -->
+  <div id="lightbox" class="fixed inset-0 z-50 hidden bg-black/90 items-center justify-center p-4" onclick="closeLightbox()">
+    <button class="absolute top-6 right-6 text-white/70 hover:text-white text-3xl leading-none" aria-label="Zavřít">&times;</button>
+    <div class="max-w-3xl max-h-[90vh] flex flex-col items-center" onclick="event.stopPropagation()">
+      <img id="lightbox-img" src="" alt="Tetování" class="max-h-[82vh] w-auto object-contain border border-white/15 shadow-2xl" />
+    </div>
+  </div>
+
+  <script>
+    // Odstranění bílého pozadí z nového loga (Spiky NYX Tattoo Emblem.png)
+    function renderCutoutLogo() {
+      const canvas = document.getElementById('cutout-logo-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      img.src = 'Spiky NYX Tattoo Emblem.png';
+
+      img.onload = function () {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+
+        try {
+          const imageData = ctx.getImageData(0, 0, img.width, img.height);
+          const data = imageData.data;
+
+          for (let i = 0; i < data.length; i += 4) {
+            const r = data[i];
+            const g = data[i + 1];
+            const b = data[i + 2];
+            const brightness = (r + g + b) / 3;
+
+            if (brightness > 220 && Math.abs(r - b) < 25) {
+              data[i + 3] = 0;
+            } else if (r > g + 30 && g > b + 15) {
+              data[i] = Math.min(255, r + 20);
+              data[i + 1] = Math.min(255, g + 10);
+              data[i + 2] = b;
+            } else {
+              const boost = Math.min(255, brightness * 2.1 + 45);
+              data[i] = boost;
+              data[i + 1] = boost;
+              data[i + 2] = Math.min(255, boost + 8);
+              data[i + 3] = 255;
+            }
+          }
+          ctx.putImageData(imageData, 0, 0);
+        } catch (e) {
+          console.warn(e);
+        }
+      };
+    }
+
+    // Seznam fotek do galerie (bez přípon, loadSmartImage si je najde sám)
+    const GALLERY_BASES = [
+      "Screenshot_20261124_155516_Instagram",
+      "Screenshot_20261124_155437_Instagram",
+      "Screenshot_20261124_155455_Instagram",
+      "FB_IMG_1795533624907",
+      "eb7209a7-80bb-45d6-8714-04180ace79d4",
+      "f7d45a8d-ae80-45e0-9443-7ebfaf51b71d"
+    ];
+
+    const grid = document.getElementById('gallery-grid');
+    GALLERY_BASES.forEach(base => {
+      const card = document.createElement('div');
+      card.className = 'gallery-card overflow-hidden bg-zinc-900 border border-white/10 aspect-[4/5] cursor-pointer';
+      const img = document.createElement('img');
+      img.alt = 'Tetování';
+      img.className = 'w-full h-full object-cover object-top';
+      loadSmartImage(img, base);
+      card.onclick = () => openLightbox(img.src);
+      card.appendChild(img);
+      grid.appendChild(card);
+    });
+
+    function openLightbox(src) {
+      const lb = document.getElementById('lightbox');
+      document.getElementById('lightbox-img').src = src;
+      lb.classList.remove('hidden');
+      lb.classList.add('flex');
+    }
+
+    function closeLightbox() {
+      const lb = document.getElementById('lightbox');
+      lb.classList.add('hidden');
+      lb.classList.remove('flex');
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    document.getElementById('booking-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      document.getElementById('form-feedback').classList.remove('hidden');
+    });
+
+    window.addEventListener('DOMContentLoaded', renderCutoutLogo);
+  </script>
+</body>
+</html>
